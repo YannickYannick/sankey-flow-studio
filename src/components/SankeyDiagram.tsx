@@ -71,8 +71,8 @@ export const SankeyDiagram = ({
         [width - 8, height - 24],
       ]);
 
-    const cloned: SankeyGraph<SankeyNodeInput, SankeyLinkInput> = {
-      nodes: nodes.map((n) => ({ ...n })),
+    const cloned = {
+      nodes: indexed.map((n) => ({ ...n })),
       links: links.map((l) => ({ ...l })),
     };
     return generator(cloned) as unknown as { nodes: SNode[]; links: SLink[] };
