@@ -61,8 +61,9 @@ export const SankeyDiagram = ({
   const [hoverNode, setHoverNode] = useState<number | null>(null);
 
   const graph = useMemo(() => {
-    const generator = sankey<SankeyNodeInput, SankeyLinkInput>()
-      .nodeId((_d, i) => i)
+    const indexed = nodes.map((n, i) => ({ ...n, _i: i }));
+    const generator = sankey<SankeyNodeInput & { _i: number }, SankeyLinkInput>()
+      .nodeId((d) => d._i)
       .nodeWidth(14)
       .nodePadding(22)
       .extent([
